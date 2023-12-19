@@ -14,7 +14,7 @@ router.get("/:id", ctrlWrapper(ctrl.getById));
 
 router.post("/", validateMiddleware, ctrlWrapper(ctrl.add));
 
-router.put("/:id", validation(contactSchema), ctrlWrapper(ctrl.updateById));
+router.put("/:id", validateMiddleware, ctrlWrapper(ctrl.updateById));
 
 router.delete("/:id", ctrlWrapper(ctrl.removeById));
 
