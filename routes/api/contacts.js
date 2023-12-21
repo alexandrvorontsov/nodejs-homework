@@ -14,6 +14,12 @@ router.post("/", validation(joiSchema), ctrlWrapper(ctrl.add));
 
 router.put("/:id", validation(joiSchema), ctrlWrapper(ctrl.updateById));
 
-router.delete("/:id", ctrlWrapper(ctrl.removeById));
+router.patch(
+  "/:id/favorite",
+  validation(joiSchema),
+  ctrlWrapper(ctrl.updateFavorite)
+);
+
+router.delete("/:id", validation(joiSchema), ctrlWrapper(ctrl.removeById));
 
 module.exports = router;

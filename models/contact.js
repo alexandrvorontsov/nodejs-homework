@@ -28,9 +28,16 @@ const joiSchema = Joi.object({
   favorite: Joi.bool(),
 });
 
+const updateFavorite = Joi.object({
+  favorite: Joi.boolean()
+    .required()
+    .messages({ "any.required": "missing field favorite" }),
+});
+
 const Contact = model("contact", contactSchema);
 
 module.exports = {
   Contact,
   joiSchema,
+  updateFavorite,
 };
