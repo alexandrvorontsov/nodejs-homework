@@ -20,6 +20,6 @@ router.patch(
   ctrlWrapper(ctrl.updateFavorite)
 );
 
-router.delete("/:id", validation(joiSchema), ctrlWrapper(ctrl.removeById));
+router.delete("/:id", ctrlWrapper(ctrl.removeById));
 
 module.exports = router;
