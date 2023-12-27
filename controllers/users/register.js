@@ -11,11 +11,11 @@ const register = async (req, res) => {
   const hashPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
   const result = await User.create({ name, email, password: hashPassword });
   res.status(201).json({
-    status: "success",
+    message: "New user has been created!",
+    status: "created",
     code: 201,
     data: { user: { email, name, subscription } },
   });
-  // console.log(result);
 };
 
 module.exports = register;

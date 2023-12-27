@@ -28,6 +28,7 @@ const joiRegisterSchema = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().required(),
   password: Joi.string().min(6).required(),
+  subscription: Joi.string().valid("starter", "pro", "business"),
 });
 
 const joiLoginSchema = Joi.object({
