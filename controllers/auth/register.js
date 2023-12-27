@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const { User } = require("../../models");
 
 const register = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, subscription } = req.body;
   const user = await User.findOne({ email });
   if (user) {
     throw new Conflict(`User with ${email} already exist`);
@@ -13,7 +13,7 @@ const register = async (req, res) => {
   res.status(201).json({
     status: "success",
     code: 201,
-    data: { user: { email, name } },
+    data: { user: { email, name, subscription } },
   });
   // console.log(result);
 };
