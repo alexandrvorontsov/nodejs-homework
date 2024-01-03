@@ -7,8 +7,6 @@ const updateSubscription = async (req, res) => {
   await User.findByIdAndUpdate(_id, { subscription }, { new: true });
 
   res.json({
-    status: "Success",
-    code: 200,
     message: "User subscription updated",
     data: {
       userData: {
