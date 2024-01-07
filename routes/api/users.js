@@ -1,7 +1,7 @@
 const express = require("express");
 const { auth, validation, ctrlWrapper, upload } = require("../../middlewares");
 const { users: ctrl } = require("../../controllers");
-const { joiRegisterSchema, joiLoginSchema } = require("../../models/users");
+const { joiRegisterSchema, joiLoginSchema } = require("../../models");
 
 const router = express.Router();
 
@@ -17,7 +17,7 @@ router.post("/login", validation(joiLoginSchema), ctrlWrapper(ctrl.login));
 
 router.get("/logout", auth, ctrlWrapper(ctrl.logout));
 
-router.patch("/:id", auth, ctrl.updateSubscription);
+// router.patch("/:id", auth, ctrl.updateSubscription);
 
 router.patch(
   "/avatars",

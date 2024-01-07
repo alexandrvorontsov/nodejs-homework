@@ -15,6 +15,16 @@ const multerConfig = multer.diskStorage({
 
 const upload = multer({
   storage: multerConfig,
+  fileFilter: function fileFilter(req, file, cb) {
+    if (file.mimetype.includes("image")) {
+      cb(null, true);
+    } else {
+      const err = new Error();
+      err.status = 400;
+      err.message = "Wrong format";
+      cb(err);
+    }
+  },
 });
 
 module.exports = upload;
