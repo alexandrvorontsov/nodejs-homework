@@ -2,6 +2,7 @@ const express = require("express");
 const { auth, validation, ctrlWrapper, upload } = require("../../middlewares");
 const { users: ctrl } = require("../../controllers");
 const { joiRegisterSchema, joiLoginSchema } = require("../../models");
+// const { verificationToken } = require("../../controllers/users");
 
 const router = express.Router();
 
@@ -12,6 +13,8 @@ router.post(
   validation(joiRegisterSchema),
   ctrlWrapper(ctrl.register)
 );
+router.get("/users/verify/:verificationToken", ctrlWrapper(ctrl.verifyEmail));
+router.post("/users/verify");
 
 router.post("/login", validation(joiLoginSchema), ctrlWrapper(ctrl.login));
 
