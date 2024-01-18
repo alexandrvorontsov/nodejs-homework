@@ -1,17 +1,17 @@
 const { User } = require("../../models");
-const { sendEmail } = require("../../middlewares");
-const { NotFound } = require("http-errors");
+const { sendEmail } = require("../../helpers");
+const { NotFound, BadRequest } = require("http-errors");
 
 const { BASE_URL } = process.env;
 
 const resendVerifyEmail = async (req, res) => {
   const { email } = req.body;
-
   const user = await User.findOne({ email });
 
-  if (!user) throw NotFound("User not found");
+  if (!user) throw NotFound(404, "User not found");
 
-  if (user.verify) throw NotFound("Verification has already been passed");
+  if (user.verify)
+    throw BadRequest(400, "Verification has already been passed");
 
   const verifyEmail = {
     to: email,

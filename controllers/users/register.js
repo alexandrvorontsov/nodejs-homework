@@ -4,7 +4,7 @@ const gravatar = require("gravatar");
 // const { nanoid } = require("nanoid");
 const { v4 } = require("uuid");
 const { User } = require("../../models");
-const { sendEmail } = require("../../middlewares");
+const { sendEmail } = require("../../helpers");
 const { BASE_URL } = process.env;
 
 const register = async (req, res) => {
