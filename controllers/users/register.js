@@ -1,8 +1,8 @@
 const { Conflict } = require("http-errors");
 const bcrypt = require("bcrypt");
 const gravatar = require("gravatar");
-// const { nanoid } = require("nanoid");
-const { v4 } = require("uuid");
+const { nanoid } = require("nanoid");
+// const { v4 } = require("uuid");
 const { User } = require("../../models");
 const { sendEmail } = require("../../helpers");
 const { BASE_URL } = process.env;
@@ -14,7 +14,7 @@ const register = async (req, res) => {
     throw new Conflict(`User with ${email} already exist`);
   }
 
-  const verificationToken = v4();
+  const verificationToken = nanoid();
   const avatarURL = gravatar.url(email);
   const hashPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 
